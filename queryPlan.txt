@@ -1,0 +1,44 @@
+CREATE TABLE manufacturers(
+    id SERIAL PRIMARY KEY,
+    companyName VARCHAR(45),
+    contact VARCHAR(225),
+    contact_email VARCHAR(45),
+    contact_phone_number VARCHAR(13)
+);
+
+CREATE TABLE purchases(
+    id SERIAL PRIMARY KEY,
+    qty int,
+    date_ordered VARCHAR(225),
+    date_received VARCHAR(225)
+);
+CREATE TABLE users(
+    id SERIAL PRIMARY KEY,
+    fname varchar(45),
+    lname varchar(45),
+    email varchar(45)
+);
+CREATE TABLE sales(
+    id SERIAL PRIMARY KEY,
+    qty int,
+    date_ordered VARCHAR(45),
+    date_received VARCHAR(45)
+);
+CREATE TABLE item(
+    id SERIAL PRIMARY KEY,
+    name varchar(45),
+    description varchar(225)
+);
+__________________________________________________
+
+INSERT INTO manufacturers (company_name, contact_name, contact_email , contact_phone_number)
+VALUES  
+    ('Target', 'Bob Vance', 'bobvance@gmail.com', '(443)251-7865'),
+    ('Nordstrom', 'Michael Scott', 'mscott@gmail.com', '(443)251-9987'),
+    ('Sears', 'Jim Halper', 'jhalper@gmail.com', '(443)251-3326');
+
+INSERT INTO users (fname, lname, email)
+VALUES  
+    ('Greg', 'Maddox', 'gmaddox@gmail.com'),
+    ('Bill', 'Gill', 'bg@gmail.com'),
+    ('Pam', 'Beasley', 'pbeasley@gmail.com');
