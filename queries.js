@@ -13,6 +13,19 @@ const getUsers = (req, res) => {
             throw error
         }
         res.send(results.rows)
+        res.status(200)
+    })
+}
+
+const getUser = (req, res) =>{
+    var id = req.params.id
+    
+    pool.query(`SELECT * FROM users WHERE id = $1`, [id], (error, results) =>{
+        if(error){
+            throw error
+        }
+        res.send(results.rows)
+        res.status(200)
     })
 }
 
@@ -62,6 +75,22 @@ const postUser = (req,res) =>{
     }
 }
 
+const deleteUser = (req,res) => {
+    const id = req.params.id
 
+    pool.query('DELETE FROM users WHERE id = $1', [id], (error, results) => {
+        if (error) {
+            throw error
+        }
+        // res.send("User " + id + " deleted!")
+        res.status(200).send("User " + id + " deleted!")
+    })
+}
 
-module.exports = {getUsers, putUser, postUser}
+module.exports = {
+    getUsers, 
+    getUser, 
+    putUser, 
+    postUser, 
+    deleteUser
+}

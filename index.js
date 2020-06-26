@@ -13,6 +13,8 @@ app.listen(port, () => {
 })
 
 app.get('/users', db.getUsers)
+app.get('/getUser/:id', db.getUser)
 app.put('/users/:id', db.putUser)
 app.post('/createuser', db.postUser)
+app.delete('/deleteuser/:id', db.deleteUser)
 
