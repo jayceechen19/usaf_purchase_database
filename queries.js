@@ -46,4 +46,22 @@ const putUser = (req, res) =>{
     
 }
 
-module.exports = {getUsers, putUser}
+const postUser = (req,res) =>{
+    const newbody = req.body
+    if (newbody.fname && newbody.lname && newbody.email){
+        pool.query('INSERT INTO users (fname, lname, email) VALUES ($1, $2, $3)', [newbody.fname, newbody.lname, newbody.email], (error, results) => {
+            if (error) {
+                throw error
+            }
+            res.send("New User Added!")
+            res.status(200)
+        })
+    }else{
+        res.send(`All information not supplied. User not added.`)
+        res.status(500)
+    }
+}
+
+
+
+module.exports = {getUsers, putUser, postUser}

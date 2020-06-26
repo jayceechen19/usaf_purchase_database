@@ -14,5 +14,5 @@ app.listen(port, () => {
 
 app.get('/users', db.getUsers)
 app.put('/users/:id', db.putUser)
-app.post('/cr')
+app.post('/createuser', db.postUser)
 
