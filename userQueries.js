@@ -1,11 +1,5 @@
-const Pool = require('pg').Pool
-
-const pool = new Pool({
-  user: 'jessicachen',
-  host: 'localhost',
-  database: 'ecommerce',
-  port: 5432,
-})
+const poolFile = require('./pool.js')
+const pool = poolFile.pool
 
 const getUsers = (req, res) => {
     pool.query('SELECT * FROM users', (error, results) => {
