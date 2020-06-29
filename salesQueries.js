@@ -81,6 +81,7 @@ const putSale= (req, res) =>{
 }
 const postSale = (req, res) =>{
     const newbody = req.body
+    const items = req.body.items
     if (newbody.qty && newbody.date_ordered && newbody.date_received && newbody.customers_id && newbody.users_id){
         pool.query('INSERT INTO sales (qty, date_ordered, date_received, customers_id, users_id) VALUES ($1, $2, $3, (SELECT id FROM customers WHERE id = $4), (SELECT id FROM users WHERE id = $5))',
         [newbody.qty, newbody.date_ordered, newbody.date_received, newbody.customers_id, newbody.users_id], 
@@ -88,6 +89,11 @@ const postSale = (req, res) =>{
             if (error) {
                 res.status(500).send("FOREIGN KEYS DON'T EXIST")
             }else{
+                for (var x=0; x<items.length; x++){
+                    pool.query('INSERT INTO sales_has_item (sales_id, item_id) VALUES ((SELECT last_value FROM sales_id_seq), $1)', [items[x]], () =>{
+        
+                    })
+                }
                 res.send("New Sale Added!")
                 res.status(200)
             }

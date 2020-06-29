@@ -81,17 +81,24 @@ const putPurchase = (req, res) =>{
 }
 const postPurchase = (req, res) =>{
     const newbody = req.body
-    if (newbody.qty && newbody.date_ordered && newbody.date_received && newbody.manufacturers_id && newbody.users_id){
+    const items = req.body.items
+    if (newbody.qty && newbody.date_ordered && newbody.date_received && newbody.manufacturers_id && newbody.users_id && items){
         pool.query('INSERT INTO purchases (qty, date_ordered, date_received, manufacturers_id, users_id) VALUES ($1, $2, $3, (SELECT id FROM manufacturers WHERE id = $4), (SELECT id FROM users WHERE id = $5))',
         [newbody.qty, newbody.date_ordered, newbody.date_received, newbody.manufacturers_id, newbody.users_id], 
         (error, results) => {
             if (error) {
                 res.status(500).send("FOREIGN KEYS DON'T EXIST")
             }
+            for (var x=0; x<items.length; x++){
+                pool.query('INSERT INTO purchase_has_item (purchase_id, item_id) VALUES ((SELECT last_value FROM purchase_id_seq), $1)', [items[x]], (error, results) =>{
+    
+                })
+            }
             res.send("New Purchase Added!")
             res.status(200)
         })
-    }else{
+    }
+    else{
         res.send(`All information not supplied. Purchase not added.`)
         res.status(500)
     }
