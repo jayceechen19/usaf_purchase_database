@@ -9,8 +9,6 @@ const dbItems = require('./itemQueries')
 const dbPurchase = require('./purchaseQueries')
 const dbSales = require('./salesQueries')
 
-
-
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
 
