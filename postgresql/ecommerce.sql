@@ -33,7 +33,7 @@ CREATE TABLE public.customers (
 );
 
 
-ALTER TABLE public.customers OWNER TO jessicachen;
+-- ALTER TABLE public.customers OWNER TO jessicachen;
 
 --
 -- Name: customers_id_seq; Type: SEQUENCE; Schema: public; Owner: jessicachen
@@ -48,7 +48,7 @@ CREATE SEQUENCE public.customers_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.customers_id_seq OWNER TO jessicachen;
+-- ALTER TABLE public.customers_id_seq OWNER TO jessicachen;
 
 --
 -- Name: customers_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: jessicachen
@@ -68,7 +68,7 @@ CREATE TABLE public.item (
 );
 
 
-ALTER TABLE public.item OWNER TO jessicachen;
+-- ALTER TABLE public.item OWNER TO jessicachen;
 
 --
 -- Name: item_id_seq; Type: SEQUENCE; Schema: public; Owner: jessicachen
@@ -83,7 +83,7 @@ CREATE SEQUENCE public.item_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.item_id_seq OWNER TO jessicachen;
+-- ALTER TABLE public.item_id_seq OWNER TO jessicachen;
 
 --
 -- Name: item_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: jessicachen
@@ -139,7 +139,7 @@ CREATE TABLE public.purchase_has_item (
 );
 
 
-ALTER TABLE public.purchase_has_item OWNER TO jessicachen;
+-- ALTER TABLE public.purchase_has_item OWNER TO jessicachen;
 
 --
 -- Name: purchases; Type: TABLE; Schema: public; Owner: jessicachen
@@ -155,7 +155,7 @@ CREATE TABLE public.purchases (
 );
 
 
-ALTER TABLE public.purchases OWNER TO jessicachen;
+-- ALTER TABLE public.purchases OWNER TO jessicachen;
 
 --
 -- Name: purchase_id_seq; Type: SEQUENCE; Schema: public; Owner: jessicachen
@@ -170,7 +170,7 @@ CREATE SEQUENCE public.purchase_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.purchase_id_seq OWNER TO jessicachen;
+-- ALTER TABLE public.purchase_id_seq OWNER TO jessicachen;
 
 --
 -- Name: purchase_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: jessicachen
@@ -193,7 +193,7 @@ CREATE TABLE public.sales (
 );
 
 
-ALTER TABLE public.sales OWNER TO jessicachen;
+-- ALTER TABLE public.sales OWNER TO jessicachen;
 
 --
 -- Name: sales_has_item; Type: TABLE; Schema: public; Owner: jessicachen
@@ -205,7 +205,7 @@ CREATE TABLE public.sales_has_item (
 );
 
 
-ALTER TABLE public.sales_has_item OWNER TO jessicachen;
+-- ALTER TABLE public.sales_has_item OWNER TO jessicachen;
 
 --
 -- Name: sales_id_seq; Type: SEQUENCE; Schema: public; Owner: jessicachen
@@ -220,7 +220,7 @@ CREATE SEQUENCE public.sales_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.sales_id_seq OWNER TO jessicachen;
+-- ALTER TABLE public.sales_id_seq OWNER TO jessicachen;
 
 --
 -- Name: sales_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: jessicachen
@@ -241,7 +241,7 @@ CREATE TABLE public.users (
 );
 
 
-ALTER TABLE public.users OWNER TO jessicachen;
+-- ALTER TABLE public.users OWNER TO jessicachen;
 
 --
 -- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: jessicachen
@@ -256,7 +256,7 @@ CREATE SEQUENCE public.users_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.users_id_seq OWNER TO jessicachen;
+-- ALTER TABLE public.users_id_seq OWNER TO jessicachen;
 
 --
 -- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: jessicachen
@@ -350,6 +350,10 @@ COPY public.purchase_has_item (purchase_id, item_id) FROM stdin;
 7	3
 8	4
 9	5
+9	2
+12	3
+13	5
+13	3
 \.
 
 
@@ -363,6 +367,10 @@ COPY public.purchases (id, qty, date_ordered, date_received, manufacturers_id, u
 7	3	Date 4	DateR 4	1	3
 8	4	Date 5	DateR 5	2	2
 9	5	Date 6	DateR 6	2	3
+10	1	Date 1	DateR 1	1	1
+11	1	Date 5	DateR 5	1	1
+12	1	Date 5	DateR 5	1	1
+13	1	Date 5	DateR 5	1	1
 \.
 
 
@@ -380,6 +388,7 @@ COPY public.sales (id, qty, date_ordered, date_received, users_id, customers_id)
 --
 
 COPY public.sales_has_item (sales_id, item_id) FROM stdin;
+2	2
 \.
 
 
@@ -419,7 +428,7 @@ SELECT pg_catalog.setval('public.manufacturers_id_seq', 4, true);
 -- Name: purchase_id_seq; Type: SEQUENCE SET; Schema: public; Owner: jessicachen
 --
 
-SELECT pg_catalog.setval('public.purchase_id_seq', 9, true);
+SELECT pg_catalog.setval('public.purchase_id_seq', 13, true);
 
 
 --
